@@ -22,6 +22,11 @@ RUN wget "http://www-eu.apache.org/dist/trafficserver/$TS_VERSION.tar.bz2" && \
     make && \
     make install
 
+RUN ldconfig
+
+# Run regression testing
+RUN /opt/trafficserver/bin/traffic_server -R 1
+
 EXPOSE 80
 
 CMD /opt/trafficserver/bin/traffic_server
